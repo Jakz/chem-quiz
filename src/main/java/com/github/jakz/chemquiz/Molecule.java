@@ -90,7 +90,11 @@ public class Molecule
         if (formula[i-1] instanceof Integer)
           buffer.append(superscript(v));
         else if (v != 1)
-          buffer.append(subscript(v));
+        {
+          if (v > 10)
+            buffer.append(subscript(v / 10));
+          buffer.append(subscript(v % 10));
+        }
       }
       else
         buffer.append(o);
@@ -132,16 +136,33 @@ public class Molecule
   public static final Molecule Butanoic_Acid = Molecule.of("Acido butanoico", "Acido butirrico", "CCCC(=O)O", C, H, 3, C, H, 2, C, H, 2, C, O, O, H);
   public static final Molecule Phtalic_Acid = Molecule.of("Acido 1,2-benzenedicarbossilico", "Acido ftalico", "C1=CC=C(C(=C1)C(=O)O)C(=O)O", C, 8, H, 6, O, 4);
   
+  public static final Molecule Oxalic_Acid = Molecule.of("Acido etandioico", "Acido Ossalico", "OC(=O)C(=O)O", H, 2, C, 2, O, 4);
+  public static final Molecule Malonic_Acid = Molecule.of("Acido 1,3-propandioco", "Acido Malonico", "C(C(=O)O)C(=O)O", C, 3, H, 4, O, 4);
   public static final Molecule Succinic_Acid = Molecule.of("Acido 1,4-butandioico", "Acido Succinico", "C(CC(=O)O)C(=O)O", C, 4, H, 6, O, 4);
-
   public static final Molecule Tartaric_Acid = Molecule.of("Acido 2R,3R-diidrossibutandioico", "Acido Tartarico", "C(C(C(=O)O)O)(C(=O)O)O", C, 4, H, 6, O, 6);
+  public static final Molecule Maleic_Acid = Molecule.of("Acido cis-1,4-butendioico", "Acido Maleico", "O=C(O)\\C=C/C(=O)O", C, 4, H, 4, O, 4);
 
+
+  public static final Molecule Glycerol = Molecule.of("1,2,3-propantriolo", new String[] { "Glicerolo", "Glicerina" }, "C(C(CO)O)O", C, 3, H, 8, O, 3);
+
+  public static final Molecule Glucose = Molecule.of("Glucosio", "", "C(C1C(C(C(C(O1)O)O)O)O)O", C, 6, H, 12, O, 6);
+  public static final Molecule Fructose = Molecule.of("Fruttosio", "", "O[C@H]1[C@H](O)[C@H](O[C@]1(O)CO)CO", C, 6, H, 12, O, 6);
   
-  public static final Molecule Aniline = Molecule.of("Anilina", new String[] { "Fenilammina", "Amminobenzene", "Benzenammina" }, "C1=CC=C(C=C1)N", C, 6, H, 7, N);
+  public static final Molecule Formaldehyde = Molecule.of("Metanale", new String[] { "Formaldeide", "Aldeide formica", "Formalina" }, "C=O", C, H, 2, O);
+  public static final Molecule Acetaldehyde = Molecule.of("Etanale", new String[] { "Acetaldeide", "Aldeide acetica" }, "CC=O", C, 2, H, 4, O);
+  public static final Molecule Propionaldehyde = Molecule.of("Propanale", new String[] { "Propionaldeide", "Aldeide propionica" }, "CCC=O", C, 3, H, 6, O);
+
+  public static final Molecule Benzene = Molecule.of("Benzene", "", "C1=CC=CC=C1", C, 6, H, 6);
+  public static final Molecule Phenol = Molecule.of("Fenolo", new String[] { "Acido fenico", "Acido carbolico", "Idrossibenzene", "Benzenolo" }, "C1=CC=C(C=C1)O", C, 6, H, 6, O);
+  public static final Molecule Aniline = Molecule.of("Anilina", new String[] { "Fenilammina", "Amminobenzene", "Benzenammina" }, "C1=CC=C(C=C1)N", C, 6, H, 5, N, H, 2);
   
+ 
   public static final Molecule NaH = Molecule.of("Idruro di sodio", "", "[H-].[Na+]", Na, H);
   
   public static final Molecule Phosphate = Molecule.of("Fosfato", "", "[O-]P([O-])([O-])=O", P, 4, 3, '-');
+  
+  public static final Molecule Chloroform = Molecule.of("Triclorometano", "Cloroformio", "C(Cl)(Cl)Cl", Cl, 3, C, H);
+
   
   public final static Molecule[] molecules = {
     
@@ -173,14 +194,32 @@ public class Molecule
     Metanoic_Acid,
     CH3COOH,
     Butanoic_Acid,
-    Phtalic_Acid,
     
+    Oxalic_Acid,
+    Malonic_Acid,
     Succinic_Acid,
     Tartaric_Acid,
+    Maleic_Acid,
     
+    Phtalic_Acid,
+    
+    Formaldehyde,
+    Acetaldehyde,
+    Propionaldehyde,
+    
+    Glycerol,
+    
+    Benzene,
+    Phenol,
     Aniline,
     
     Phosphate,
+    
+    Chloroform,
+    
+    
+    Glucose,
+    Fructose,
   };
   
 
