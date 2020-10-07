@@ -164,6 +164,10 @@ public class Molecule
   public static final Molecule Chloroform = Molecule.of("Triclorometano", "Cloroformio", "C(Cl)(Cl)Cl", Cl, 3, C, H);
 
   
+  public static final Molecule Tryptophan = Molecule.of("Triptofano", "", "c1[nH]c2ccccc2c1C[C@H](N)C(=O)O\r\n", C, 11, H, 12, N, 2, O, 2);
+  
+  public static final Molecule ATP = Molecule.of("ATP", "", "O=P(O)(O)OP(=O)(O)OP(=O)(O)OC[C@H]3O[C@@H](n2cnc1c(ncnc12)N)[C@H](O)[C@@H]3O", C, 10, H, 16, N, 5, O, 13, P, 3);
+  
   public final static Molecule[] molecules = {
     
     // ossidi cloro
@@ -220,6 +224,11 @@ public class Molecule
     
     Glucose,
     Fructose,
+    
+    // aminoacids
+    Tryptophan,
+    
+    ATP,
   };
   
 

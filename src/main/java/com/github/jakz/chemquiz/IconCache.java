@@ -54,10 +54,10 @@ public class IconCache extends com.pixbits.lib.util.IconCache<Molecule>
         DepictionGenerator dptGen = new DepictionGenerator();
         
         Image image = dptGen
-          .withSize(100, 100)
+          .withSize(200, 200)
           .withAtomColors(new MyAtomColorer())
           .withCarbonSymbols()
-          .withAromaticDisplay()
+          //.withAromaticDisplay()
           .withTerminalCarbons()
           .withFillToFit()
           //.withBackgroundColor(new java.awt.Color(214,217,223))

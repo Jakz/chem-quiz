@@ -38,10 +38,10 @@ public class MoleculeTable extends JPanel
     pane.setPreferredSize(new Dimension(600, 500));
     add(pane, BorderLayout.CENTER);
 
-    model.addColumn(new ColumnSpec<Molecule, ImageIcon>("", ImageIcon.class, mediator.cache::get).setWidth(120));
+    model.addColumn(new ColumnSpec<Molecule, ImageIcon>("", ImageIcon.class, mediator.cache::get).setWidth(220));
     model.addColumn(new ColumnSpec<>("Name", String.class, m -> String.format("%s - %s (%s)", m.formula, m.traditional[0], m.iupac)));
        
-    model.setRowHeight(120);
+    model.setRowHeight(220);
   }
   
   public void refresh(Collection<Molecule> data)
