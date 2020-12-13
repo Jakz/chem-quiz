@@ -65,6 +65,11 @@ public class Molecule
     return of(iupac, "", "", traditional, formula);
   }
   
+  public static Molecule ofb(String traditional, String smiles, Object... formula)
+  {
+    return of("", new String[] { traditional }, smiles, formula);
+  }
+  
   public static Molecule of(String iupac, String traditional, String smiles, Object... formula)
   {
     return of(iupac, new String[] { traditional }, smiles, formula);
@@ -141,12 +146,13 @@ public class Molecule
   public static final Molecule Succinic_Acid = Molecule.of("Acido 1,4-butandioico", "Acido Succinico", "C(CC(=O)O)C(=O)O", C, 4, H, 6, O, 4);
   public static final Molecule Tartaric_Acid = Molecule.of("Acido 2R,3R-diidrossibutandioico", "Acido Tartarico", "C(C(C(=O)O)O)(C(=O)O)O", C, 4, H, 6, O, 6);
   public static final Molecule Maleic_Acid = Molecule.of("Acido cis-1,4-butendioico", "Acido Maleico", "O=C(O)\\C=C/C(=O)O", C, 4, H, 4, O, 4);
-
+  public static final Molecule Fumaric_Acid = Molecule.of("Acido trans-1,4-butendioico", "Acido Fumarico", "C(=CC(=O)O)C(=O)O", C, 4, H, 4, O, 4);
+  public static final Molecule Citric_Acid = Molecule.ofb("Acido Citrico", "C(C(=O)O)C(CC(=O)O)(C(=O)O)O", C, 6, H, 8, O, 7);
 
   public static final Molecule Glycerol = Molecule.of("1,2,3-propantriolo", new String[] { "Glicerolo", "Glicerina" }, "C(C(CO)O)O", C, 3, H, 8, O, 3);
 
-  public static final Molecule Glucose = Molecule.of("Glucosio", "", "C(C1C(C(C(C(O1)O)O)O)O)O", C, 6, H, 12, O, 6);
-  public static final Molecule Fructose = Molecule.of("Fruttosio", "", "O[C@H]1[C@H](O)[C@H](O[C@]1(O)CO)CO", C, 6, H, 12, O, 6);
+  public static final Molecule Glucose = Molecule.ofb("Glucosio", "C(C1C(C(C(C(O1)O)O)O)O)O", C, 6, H, 12, O, 6);
+  public static final Molecule Fructose = Molecule.ofb("Fruttosio", "O[C@H]1[C@H](O)[C@H](O[C@]1(O)CO)CO", C, 6, H, 12, O, 6);
   
   public static final Molecule Formaldehyde = Molecule.of("Metanale", new String[] { "Formaldeide", "Aldeide formica", "Formalina" }, "C=O", C, H, 2, O);
   public static final Molecule Acetaldehyde = Molecule.of("Etanale", new String[] { "Acetaldeide", "Aldeide acetica" }, "CC=O", C, 2, H, 4, O);
@@ -164,13 +170,20 @@ public class Molecule
   public static final Molecule Chloroform = Molecule.of("Triclorometano", "Cloroformio", "C(Cl)(Cl)Cl", Cl, 3, C, H);
 
   
-  public static final Molecule Tryptophan = Molecule.of("Triptofano", "", "c1[nH]c2ccccc2c1C[C@H](N)C(=O)O\r\n", C, 11, H, 12, N, 2, O, 2);
+  public static final Molecule Tryptophan = Molecule.ofb("Triptofano", "c1[nH]c2ccccc2c1C[C@H](N)C(=O)O", C, 11, H, 12, N, 2, O, 2);
+  public static final Molecule Lysine = Molecule.ofb("Lisina", "C(CCN)CC(C(=O)O)N", C, 6, H, 14, N, 2, O, 2);
+  public static final Molecule Aspartic_Acid = Molecule.ofb("Acido Aspartico", "O=C(O)CC(N)C(=O)O", C, 4, H, 7, N, 1, O, 4);
   
-  public static final Molecule ATP = Molecule.of("ATP", "", "O=P(O)(O)OP(=O)(O)OP(=O)(O)OC[C@H]3O[C@@H](n2cnc1c(ncnc12)N)[C@H](O)[C@@H]3O", C, 10, H, 16, N, 5, O, 13, P, 3);
+  public static final Molecule Ornitine = Molecule.ofb("Ornitina", "C(CC(C(=O)O)N)CN", C, 5, H, 12, N, 2, O, 2);
   
+  public static final Molecule ATP = Molecule.ofb("ATP", "O=P(O)(O)OP(=O)(O)OP(=O)(O)OC[C@H]3O[C@@H](n2cnc1c(ncnc12)N)[C@H](O)[C@@H]3O", C, 10, H, 16, N, 5, O, 13, P, 3);
+  public static final Molecule cAMP = Molecule.ofb("cAMP", "c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@H]4[C@H](O3)COP(=O)(O4)O)O)N", C, 10, H, 11, N, 5, O, 6, P, 1);
+  
+  public static final Molecule Carnitine = Molecule.ofb("Carnitina", "C[N+](C)(C)CC(CC(=O)[O-])O", C, 7, H, 15, N, 1, O, 3);
+
   public final static Molecule[] molecules = {
     
-    // ossidi cloro
+    /*// ossidi cloro
     Cl2O7,
     Molecule.of("Pentossido di dicloro", "Anidride Clorica", "O=Cl(=O)OCl(=O)=O", Cl, 2, O, 5),
     Molecule.of("Triossido di dicloro", "Anidride Clorosa", "ClOCl(=O)=O", Cl, 2, O, 3),
@@ -192,7 +205,7 @@ public class Molecule
     
     // idrossidi metallo + OH
     Molecule.of("Idrossido di sodio", "Idrossido di sodio", "", Na, 1, O, 1, H, 1),
-    //Compound.of("Triidrossido di alluminio", "Idrossido di alluminio", "Idrossido di alluminio", Al),
+    //Compound.of("Triidrossido di alluminio", "Idrossido di alluminio", "Idrossido di alluminio", Al),*/
     
     // acidi organici
     Metanoic_Acid,
@@ -204,6 +217,9 @@ public class Molecule
     Succinic_Acid,
     Tartaric_Acid,
     Maleic_Acid,
+    
+    Fumaric_Acid,
+    Citric_Acid,
     
     Phtalic_Acid,
     
@@ -225,10 +241,18 @@ public class Molecule
     Glucose,
     Fructose,
     
+    
+    Carnitine,
+    
     // aminoacids
     Tryptophan,
+    Lysine,
+    Aspartic_Acid,
+    
+    Ornitine,
     
     ATP,
+    cAMP,
   };
   
 
