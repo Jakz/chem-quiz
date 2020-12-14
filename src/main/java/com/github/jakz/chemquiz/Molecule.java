@@ -2,6 +2,10 @@ package com.github.jakz.chemquiz;
 
 import java.awt.Image;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Element;
@@ -79,33 +83,56 @@ public class Molecule
   {
     StringBuilder buffer = new StringBuilder();
     
-    for (int i = 0; i < formula.length; ++i)
+    if (formula.length > 0 && formula[0] instanceof String)
     {
-      Object o = formula[i];
-      if (o instanceof IElement)
-        buffer.append(((IElement)o).getSymbol());
-      else if (o.equals('+'))
-        buffer.append('⁺');
-      else if (o.equals('-'))
-        buffer.append('⁻');
-      else if (o instanceof Integer)
+      String s = (String)formula[0];
+
+      for (int i = 0; i < s.length(); ++i )
       {
-        int v = (Integer)o;
+        char c = s.charAt(i);
         
-        if (formula[i-1] instanceof Integer)
-          buffer.append(superscript(v));
-        else if (v != 1)
-        {
-          if (v > 10)
-            buffer.append(subscript(v / 10));
-          buffer.append(subscript(v % 10));
-        }
+        if (Character.isDigit(c))
+          buffer.append(subscript(c - '0'));
+        else if (Character.isLetter(c))
+          buffer.append(Character.toUpperCase(c));
+        else if (c == '+')
+          buffer.append('⁺');
+        else if (c == '-')
+          buffer.append('⁻');         
       }
-      else
-        buffer.append(o);
+      
+      return new Molecule(buffer.toString(), smiles, iupac, traditional);
     }
-     
-    return new Molecule(buffer.toString(), smiles, iupac, traditional);
+    else
+    {
+      for (int i = 0; i < formula.length; ++i)
+      {
+        Object o = formula[i];
+        if (o instanceof IElement)
+          buffer.append(((IElement)o).getSymbol());
+        else if (o.equals('+'))
+          buffer.append('⁺');
+        else if (o.equals('-'))
+          buffer.append('⁻');
+        else if (o instanceof Integer)
+        {
+          int v = (Integer)o;
+          
+          if (formula[i-1] instanceof Integer)
+            buffer.append(superscript(v));
+          else if (v != 1)
+          {
+            if (v > 10)
+              buffer.append(subscript(v / 10));
+            buffer.append(subscript(v % 10));
+          }
+        }
+        else
+          buffer.append(o);
+      }
+       
+      return new Molecule(buffer.toString(), smiles, iupac, traditional);
+    }
   }
   
   private static Isotopes factory;
@@ -121,6 +148,21 @@ public class Molecule
       e.printStackTrace();
     }
 
+  }
+  
+  public static void loadCSV(Path file) throws IOException
+  {
+    Files.lines(file).forEach(line -> {
+        String[] fields = line.split(",");
+        
+        if (fields[0].equals("Smiles"))
+          return;
+        else
+        {
+          molecules.add(Molecule.ofb(fields[2], fields[0], fields[1])); 
+        }
+        
+    });
   }
   
   
@@ -181,7 +223,9 @@ public class Molecule
   
   public static final Molecule Carnitine = Molecule.ofb("Carnitina", "C[N+](C)(C)CC(CC(=O)[O-])O", C, 7, H, 15, N, 1, O, 3);
 
-  public final static Molecule[] molecules = {
+  public final static List<Molecule> molecules = new ArrayList<>();
+  
+  public final static Molecule[] molecules2 = {
     
     /*// ossidi cloro
     Cl2O7,

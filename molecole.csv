@@ -1,0 +1,9 @@
+Smiles,Formula,Nome,Categorie
+c1[nH]c2ccccc2c1C[C@H](N)C(=O)O,C11H12N2O2,Triptofano,amminoacido idrofobo; amminoacido aromatico; indolo; amminoacido essenziale
+C(CCN)CC(C(=O)O)N,C6H14N2O2,Lisina,amminoacido polare; amminoacido basico; amminoacido essenziale
+C(CC(=O)O)C(C(=O)O)N,C5H9NO4,Acido Glutammico,amminoacido polare; amminoacido acido
+C(C(=O)O)C(CC(=O)O)(C(=O)O)O,C6H8O7,Acido Citrico,acido carbossilico; acido tricarbossilico; idrossile
+O=C(O)\\C=C/C(=O)O,C4H4O4,Acido Maleico,acido carbossilico; acido bicarbossilico; acido carbossilico insaturo
+Cc2ncc(C[n+]1csc(CCO)c1C)c(N)n2,C12H17N4OS+,Tiamina (B1),vitamina; vitamina idrosolubile; tiazolo; pirimidina
+C(C(C(=O)O)O)C(=O)O,C4H6O5,Acido Malico,acido carbossilico; acido bicarbossilico; idrossile
+C(CC(=O)O)C(=O)C(=O)O,C5H6O5,Acido α-chetoglutarico,acido carbossilico; acido bicarbossilico; carbonile

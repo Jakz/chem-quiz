@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 import javax.swing.ImageIcon;
@@ -34,17 +36,25 @@ public class App
 {
   public static void mainz( String[] args )
   {
-    for (Molecule molecule : Molecule.molecules)
-      System.out.println("Generated "+molecule.formula);
+
   }
     
 
   public static void main(String[] args) throws Exception
   {    
+    try
+    {
+      Molecule.loadCSV(Paths.get("molecole.csv"));
+    } 
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+    
     WrapperFrame<MoleculeTable> frame = UIUtils.buildFrame(new MoleculeTable(new Mediator()), "Molecules");
     frame.centerOnScreen();
     frame.exitOnClose();
-    frame.panel().refresh(Arrays.asList(Molecule.molecules));
+    frame.panel().refresh(Molecule.molecules);
     frame.setVisible(true);
   }
 }
